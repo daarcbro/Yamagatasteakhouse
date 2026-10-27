@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Yamagata Japanese Steak House | Lubbock, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0804;
+    --deep: #110e08;
+    --card: #16120b;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --red: #8b1a1a;
+    --cream: #f5efe0;
+    --cream-dim: #c9bfa8;
+    --border: rgba(201,168,76,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,8,4,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--cream-dim);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,26,26,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0804 0%, #12100a 50%, #0a0804 100%);
+  }
+
+  /* Japanese pattern overlay */
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--gold) 0px, var(--gold) 1px,
+      transparent 1px, transparent 40px
+    ), repeating-linear-gradient(
+      -45deg,
+      var(--gold) 0px, var(--gold) 1px,
+      transparent 1px, transparent 40px
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .hero-kanji {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: var(--gold);
+    opacity: 0.12;
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: -1.5rem;
+    animation: fadeUp 1.4s ease 0.1s both;
+  }
+
+  .hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    animation: fadeUp 1.2s ease 0.2s both;
+  }
+
+  .hero-title span { color: var(--gold); }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--cream-dim);
+    letter-spacing: 0.15em;
+    margin-top: 1rem;
+    animation: fadeUp 1.2s ease 0.4s both;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    animation: fadeUp 1.2s ease 0.5s both;
+  }
+
+  .hero-divider span {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .hero-divider .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.8;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1.2s ease 0.6s both;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    padding: 0.85rem 2.5rem;
+    background: transparent;
+    color: var(--cream);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeUp 1.2s ease 1s both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  .scroll-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: 0.6;
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  .section-divider {
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--cream-dim);
+    margin-bottom: 1.2rem;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-box {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, transparent 100%);
+  }
+
+  .stat-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .visual-frame {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .visual-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+
+  .visual-accent {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 60%;
+    height: 60%;
+    border: 1px solid var(--gold);
+    opacity: 0.2;
+    z-index: -1;
+  }
+
+  .visual-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: -1.5rem;
+    background: var(--gold);
+    color: var(--black);
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+
+  .visual-badge .badge-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+  }
+
+  .visual-badge .badge-text {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  /* EXPERIENCE BANNER */
+  .experience-banner {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .exp-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .exp-desc {
+    font-size: 0.72rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* MENU SECTION */
+  .menu-section {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .menu-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-tab {
+    padding: 0.7rem 1.8rem;
+    background: transparent;
+    color: var(--cream-dim);
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-right: 1px solid var(--border);
+  }
+
+  .menu-tab:last-child { border-right: none; }
+  .menu-tab.active { background: var(--gold); color: var(--black); }
+  .menu-tab:hover:not(.active) { color: var(--gold); }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .menu-item {
+    background: var(--card);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: background 0.3s;
+  }
+
+  .menu-item:hover { background: #1c1710; }
+
+  .menu-item-info {}
+
+  .menu-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .menu-item-desc {
+    font-size: 0.72rem;
+    color: var(--cream-dim);
+    margin-top: 0.3rem;
+    opacity: 0.7;
+  }
+
+  .menu-item-price {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .menu-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    opacity: 0.7;
+  }
+
+  /* REVIEWS */
+  .reviews-section {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+  }
+
+  .reviews-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .reviews-header { text-align: center; margin-bottom: 3rem; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .review-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    font-style: italic;
+  }
+
+  .review-author {
+    margin-top: 1.2rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* HOURS & LOCATION */
+  .info-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .hours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.3rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+
+  .hours-row:last-child { border-bottom: none; }
+
+  .hours-row .day {
+    color: var(--cream-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .hours-row .time {
+    color: var(--gold);
+    font-family: 'Shippori Mincho', serif;
+  }
+
+  .hours-row.closed .time { color: var(--cream-dim); opacity: 0.4; }
+
+  .location-info {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .location-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .loc-icon {
+    font-size: 1.1rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .loc-text {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  .loc-text a {
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .loc-text a:hover { color: var(--gold); }
+
+  .map-placeholder {
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    height: 220px;
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 100%);
+  }
+
+  .map-placeholder:hover { border-color: var(--gold); }
+
+  .map-inner {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .map-inner .map-pin { font-size: 2rem; }
+
+  .map-inner p {
+    margin-top: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #070604;
+    border-top: 1px solid var(--border);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+
+  .footer-logo span {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--cream-dim);
+    margin-top: 0.2rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--cream-dim);
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  .footer-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .visual-badge { left: 1rem; top: 1rem; }
+    .visual-accent { display: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .info-section { grid-template-columns: 1fr; gap: 3rem; }
+    .experience-banner { 
+      gap: 1.5rem; 
+      padding: 2rem 1.5rem; 
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .exp-item { gap: 0.3rem; }
+    .exp-icon { font-size: 1.3rem; }
+    .exp-title { font-size: 0.75rem; }
+    .exp-desc { font-size: 0.62rem; }
+    footer { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem; }
+    .menu-tab { padding: 0.7rem 1.2rem; font-size: 0.65rem; }
+    .menu-item { padding: 1.1rem; }
+    .menu-item-name { font-size: 0.92rem; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .hero-title { font-size: clamp(2.2rem, 9vw, 4rem); }
+    .hero-kanji { font-size: clamp(2rem, 7vw, 4rem); }
+    .section-title { font-size: clamp(1.7rem, 5vw, 2.5rem); }
+    .hours-row { font-size: 0.75rem; padding: 0.75rem 1rem; }
+    .footer-links { gap: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Yamagata</div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="tel:+18066875620" class="btn-primary" style="padding:0.5rem 1.2rem;">Reserve</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <span class="hero-kanji">山 形</span>
+    <h1 class="hero-title">Yamagata<br/><span>Japanese Steak House</span></h1>
+    <p class="hero-sub">Authentic Hibachi · Lubbock, Texas · Est. 2005</p>
+    <div class="hero-divider">
+      <span></span><div class="dot"></div><span></span>
+    </div>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="tel:+18066875620" class="btn-outline">Make a Reservation</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE BANNER -->
+<div class="experience-banner">
+  <div class="exp-item">
+    <div class="exp-icon">🔥</div>
+    <div class="exp-title">Live Hibachi</div>
+    <div class="exp-desc">Cooked right at your table</div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-icon">🍣</div>
+    <div class="exp-title">Sushi & Appetizers</div>
+    <div class="exp-desc">Fresh, traditional starters</div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-icon">👨‍👩‍👧</div>
+    <div class="exp-title">Family Owned</div>
+    <div class="exp-desc">Serving Lubbock since 2005</div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-icon">🥩</div>
+    <div class="exp-title">Premium Meats</div>
+    <div class="exp-desc">Filet Mignon, Ribeye & more</div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-icon">🍷</div>
+    <div class="exp-title">Full Bar</div>
+    <div class="exp-desc">Wine, sake & cocktails</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div class="about-text">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">The Best Japanese<br/>Food in West Texas</h2>
+      <div class="section-divider"></div>
+      <p>Since 2005, Yamagata Japanese Steak House has been Lubbock's hidden gem for authentic hibachi dining. Family owned and operated by Ken and his wife, we bring the art of Japanese teppanyaki to the heart of West Texas.</p>
+      <p>Our chefs don't just cook your meal — they put on a show. From sizzling hibachi stations to fresh sushi rolls, every visit is an experience worth remembering. Generous portions, warm hospitality, and flavors that keep our guests coming back.</p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-num">4.5★</span>
+          <span class="stat-label">Google Rating</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Years Open</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">Recommend</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">400+</span>
+          <span class="stat-label">Happy Reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="visual-frame">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="Hibachi dining experience" onerror="this.style.display='none'"/>
+        <div style="text-align:center;padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;">
+          <div style="font-size:4rem;">🔥</div>
+          <p style="font-family:'Shippori Mincho',serif;color:var(--gold);font-size:1.1rem;letter-spacing:0.1em;">Live Hibachi Experience</p>
+        </div>
+      </div>
+      <div class="visual-accent"></div>
+      <div class="visual-badge">
+        <span class="badge-num">20</span>
+        <span class="badge-text">Years of Excellence</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" style="background:var(--deep);border-top:1px solid var(--border);">
+  <div class="menu-section">
+    <div class="menu-header">
+      <span class="section-label">Our Menu</span>
+      <h2 class="section-title">From the Kitchen</h2>
+      <div class="section-divider" style="margin:1.5rem auto;"></div>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="showMenu('appetizers', this)">Appetizers</button>
+      <button class="menu-tab" onclick="showMenu('sides', this)">Sides</button>
+      <button class="menu-tab" onclick="showMenu('dinner', this)">Dinner</button>
+      <button class="menu-tab" onclick="showMenu('lunch', this)">Lunch</button>
+    </div>
+
+    <!-- APPETIZERS -->
+    <div class="menu-panel active" id="appetizers">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Spring Rolls</div><div class="menu-item-desc">3 pieces</div></div><div class="menu-item-price">$3.50</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">California Rolls</div></div><div class="menu-item-price">$4.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Shrimp & Vegetable Tempura</div></div><div class="menu-item-price">$6.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Karaage</div><div class="menu-item-desc">Fried Chicken</div></div><div class="menu-item-price">$5.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Ebi Fry</div><div class="menu-item-desc">Fried Shrimp</div></div><div class="menu-item-price">$7.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tonkatsu</div><div class="menu-item-desc">Fried Pork</div></div><div class="menu-item-price">$6.85</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Edamame</div><div class="menu-item-desc">Soy Beans</div></div><div class="menu-item-price">$3.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Yamagata Spider</div><div class="menu-item-desc">Two fried Soft Shell Crab & Fried Vegetables</div></div><div class="menu-item-price">$8.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Shumai</div><div class="menu-item-desc">Shrimp Dumplings</div></div><div class="menu-item-price">$4.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cream Cheese Wontons</div></div><div class="menu-item-price">$3.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Potstickers</div></div><div class="menu-item-price">$4.99</div></div>
+      </div>
+    </div>
+
+    <!-- SIDES -->
+    <div class="menu-panel" id="sides">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Japanese Clear Soup</div><div class="menu-item-desc">Chicken Broth</div></div><div class="menu-item-price">$1.00</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Garden Salad</div><div class="menu-item-desc">House or Sesame dressing</div></div><div class="menu-item-price">$1.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fried Rice</div><div class="menu-item-desc">2 scoops</div></div><div class="menu-item-price">$3.75</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Steak</div><div class="menu-item-desc">Hibachi, Teriyaki, or Pepper sauce</div></div><div class="menu-item-price">$6.79</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Chicken</div><div class="menu-item-desc">Hibachi, Teriyaki, or Pepper sauce</div></div><div class="menu-item-price">$5.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Shrimp</div></div><div class="menu-item-price">$8.29</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Salmon</div></div><div class="menu-item-price">$8.59</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Filet Mignon</div></div><div class="menu-item-price">$17.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Rib Eye</div></div><div class="menu-item-price">$15.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Scallops</div></div><div class="menu-item-price">$14.70</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Lobster</div><div class="menu-item-desc">1 piece</div></div><div class="menu-item-price">$23.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Side Sea Bass</div></div><div class="menu-item-price">$29.99</div></div>
+      </div>
+    </div>
+
+    <!-- DINNER -->
+    <div class="menu-panel" id="dinner">
+      <p class="menu-note" style="margin-bottom:1.5rem;">All dinner entrees served with Japanese clear soup, garden salad, edamame, hibachi vegetables & fried rice</p>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken</div><div class="menu-item-desc">Hibachi, Teriyaki, or Pepper Sauce</div></div><div class="menu-item-price">$12.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sirloin Steak</div><div class="menu-item-desc">Choice of sauce available</div></div><div class="menu-item-price">$16.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Yakiniku</div><div class="menu-item-desc">Thinly cut beef with sweet & spicy sauce</div></div><div class="menu-item-price">$11.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hibachi Shrimp</div></div><div class="menu-item-price">$17.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div></div><div class="menu-item-price">$18.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Filet Mignon</div></div><div class="menu-item-price">$23.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Rib Eye</div></div><div class="menu-item-price">$21.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Scallops</div></div><div class="menu-item-price">$29.20</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lobster</div></div><div class="menu-item-price">$48.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sea Bass</div></div><div class="menu-item-price">$35.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Steak & Chicken</div></div><div class="menu-item-price">$18.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Steak & Shrimp</div></div><div class="menu-item-price">$21.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken & Shrimp</div></div><div class="menu-item-price">$18.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Yamagata Special for 2</div><div class="menu-item-desc">Steak, Chicken & Shrimp</div></div><div class="menu-item-price">$39.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hibachi Vegetable</div><div class="menu-item-desc">2 Scoops Vegetables & Fried Rice</div></div><div class="menu-item-price">$10.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lamb</div></div><div class="menu-item-price">$23.99</div></div>
+      </div>
+    </div>
+
+    <!-- LUNCH -->
+    <div class="menu-panel" id="lunch">
+      <p class="menu-note" style="margin-bottom:1.5rem;">Served Mon–Sat. All lunch entrees come with clear soup, small salad, vegetables & fried rice</p>
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken</div><div class="menu-item-desc">Choice of sauce</div></div><div class="menu-item-price">$8.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sirloin Steak</div></div><div class="menu-item-price">$10.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Yakiniku</div></div><div class="menu-item-price">$8.59</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hibachi Shrimp</div></div><div class="menu-item-price">$11.59</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Salmon</div></div><div class="menu-item-price">$11.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Scallops</div></div><div class="menu-item-price">$18.70</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Steak & Chicken</div></div><div class="menu-item-price">$13.29</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Steak & Shrimp</div></div><div class="menu-item-price">$13.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chicken & Shrimp</div></div><div class="menu-item-price">$12.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hibachi Vegetables</div></div><div class="menu-item-price">$7.99</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pork</div><div class="menu-item-desc">Teriyaki or Pepper Sauce</div></div><div class="menu-item-price">$9.29</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lunch Set Up</div><div class="menu-item-desc">Soup, Salad, Vegetables & Fried Rice</div></div><div class="menu-item-price">$6.99</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <span class="section-label">What People Say</span>
+      <h2 class="section-title">Guest Reviews</h2>
+      <div class="section-divider" style="margin:1.5rem auto;"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">This is the best hibachi I've had in Lubbock. They are very generous with their portion sizes and are very rarely crowded. If you get Ken as your chef, you will be amazed. He is very entertaining.</p>
+        <div class="review-author">— TripAdvisor Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Hard to find great, authentic Japanese food in West Texas — but this is our new go-to place! Staff is friendly, quiet restaurant and excellent service. The Yakiniku and fried rice is absolutely amazing.</p>
+        <div class="review-author">— TripAdvisor Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">WOW! Great dining experience. The hibachi fixins' — steak, chicken & shrimp with fried rice — were absolutely awesome. The waitstaff was GREAT, courteous, friendly and very attentive to everyone at the table.</p>
+        <div class="review-author">— TripAdvisor Guest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & LOCATION -->
+<section id="visit">
+  <div class="info-section">
+    <div>
+      <span class="section-label">Hours</span>
+      <h2 class="section-title">When to Visit</h2>
+      <div class="section-divider"></div>
+      <div class="hours-grid">
+        <div class="hours-row"><span class="day">Monday</span><span class="time">11am–1:30pm · 5pm–8pm</span></div>
+        <div class="hours-row closed"><span class="day">Tuesday</span><span class="time">5pm–8pm only</span></div>
+        <div class="hours-row"><span class="day">Wednesday</span><span class="time">11am–1:30pm · 5pm–8pm</span></div>
+        <div class="hours-row"><span class="day">Thursday</span><span class="time">11am–1:30pm · 5pm–8pm</span></div>
+        <div class="hours-row"><span class="day">Friday</span><span class="time">11am–1:30pm · 5pm–8:30pm</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span class="time">11am–1:30pm · 5pm–8:30pm</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">11am–2pm · 5pm–8:30pm</span></div>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Location & Contact</h2>
+      <div class="section-divider"></div>
+      <div class="location-info">
+        <div class="location-item">
+          <span class="loc-icon">📍</span>
+          <div class="loc-text">5905 82nd St, Suite 104<br/>Lubbock, TX 79424<br/><em style="opacity:0.6;font-size:0.8rem;">Floor 2 · Mira Vista Center</em></div>
+        </div>
+        <div class="location-item">
+          <span class="loc-icon">📞</span>
+          <div class="loc-text"><a href="tel:+18066875620">(806) 687-5620</a></div>
+        </div>
+        <div class="location-item">
+          <span class="loc-icon">💳</span>
+          <div class="loc-text">Credit cards, Debit cards & NFC mobile payments accepted</div>
+        </div>
+        <div class="location-item">
+          <span class="loc-icon">♿</span>
+          <div class="loc-text">Wheelchair accessible · Free parking lot · Family friendly</div>
+        </div>
+        <div class="location-item">
+          <span class="loc-icon">📅</span>
+          <div class="loc-text">Reservations accepted — call us to book your table</div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=5905+82nd+St+Suite+104+Lubbock+TX" target="_blank" class="map-placeholder">
+        <div class="map-inner">
+          <div class="map-pin">📍</div>
+          <p>Open in Google Maps</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    Yamagata
+    <span>Japanese Steak House · Lubbock, TX</span>
+  </div>
+  <div class="footer-links">
+    <a href="#menu">Menu</a>
+    <a href="#visit">Hours</a>
+    <a href="tel:+18066875620">Call Us</a>
+  </div>
+  <p class="footer-copy">© 2025 Yamagata Japanese Steak House. All rights reserved.</p>
+</footer>
+
+<script>
+  function showMenu(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stat-box, .review-card, .menu-item, .hours-row').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
